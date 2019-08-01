@@ -48,9 +48,6 @@
                                             <constraint firstItem="rdN-3o-aOL" firstAttribute="centerX" secondItem="KhK-CW-eBX" secondAttribute="centerX" id="VbF-Sr-Qfb"/>
                                             <constraint firstItem="rdN-3o-aOL" firstAttribute="centerY" secondItem="KhK-CW-eBX" secondAttribute="centerY" id="iTL-63-ybj"/>
                                         </constraints>
-                                        <connections>
-                                            <segue destination="0RX-lc-LQa" kind="show" identifier="DetailSegue" id="QoZ-nS-Ux2"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -72,6 +69,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Xfe-Ab-qPq" id="uQ6-eV-RFM"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="Cjg-rf-VsU"/>
+                        <segue destination="0RX-lc-LQa" kind="show" identifier="DetailSegue" id="tXH-ts-nGh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
