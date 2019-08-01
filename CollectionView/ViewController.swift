@@ -16,6 +16,19 @@ class ViewController: UIViewController {
     
     var collectionData = ["1¡", "2™", "3£", "4¢", "5∞", "6§", "7¶", "8•", "9ª", "10º"]
     
+    
+    @IBAction func addItem() {
+        collectionView.performBatchUpdates({
+        for _ in 0 ..< 2 {
+            let text = "\(collectionData.count + 1)"
+            collectionData.append(text)
+            let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
+            collectionView.insertItems(at: [indexPath])
+            }
+        }, completion: nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -23,9 +36,16 @@ class ViewController: UIViewController {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
         
-        
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        collectionView.refreshControl = refresh
     }
 
+    @objc func refresh() {
+        addItem()
+        collectionView.refreshControl?.endRefreshing()
+    }
+    
 
 }
 
