@@ -13,6 +13,7 @@
 		A141C48422EFE92500F8484C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A141C48222EFE92500F8484C /* Main.storyboard */; };
 		A141C48622EFE92800F8484C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A141C48522EFE92800F8484C /* Assets.xcassets */; };
 		A141C48922EFE92800F8484C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A141C48722EFE92800F8484C /* LaunchScreen.storyboard */; };
+		A17D5D7822F3ECDD002C6EB3 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D5D7722F3ECDD002C6EB3 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A141C48522EFE92800F8484C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A141C48822EFE92800F8484C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A141C48A22EFE92800F8484C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A17D5D7722F3ECDD002C6EB3 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		A141C47D22EFE92500F8484C /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				A17D5D7722F3ECDD002C6EB3 /* CollectionViewCell.swift */,
 				A104FEE122F1E147007B342A /* DetailViewController.swift */,
 				A141C47E22EFE92500F8484C /* AppDelegate.swift */,
 				A141C48022EFE92500F8484C /* ViewController.swift */,
@@ -140,6 +143,7 @@
 			files = (
 				A104FEE222F1E147007B342A /* DetailViewController.swift in Sources */,
 				A141C48122EFE92500F8484C /* ViewController.swift in Sources */,
+				A17D5D7822F3ECDD002C6EB3 /* CollectionViewCell.swift in Sources */,
 				A141C47F22EFE92500F8484C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

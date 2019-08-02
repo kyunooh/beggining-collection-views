@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
-    
+    @IBOutlet private weak var addButton: UIBarButtonItem!
     
     
     var collectionData = ["1¡", "2™", "3£", "4¢", "5∞", "6§", "7¶", "8•", "9ª", "10º"]
@@ -39,14 +39,25 @@ class ViewController: UIViewController {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         collectionView.refreshControl = refresh
+        
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        addButton.isEnabled = !editing
+        let indexPaths = collectionView.indexPathsForVisibleItems
+        for indexPath in indexPaths {
+            let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+            cell.isEditing = editing
+        }
+    }
+    
     @objc func refresh() {
         addItem()
         collectionView.refreshControl?.endRefreshing()
     }
     
-
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -55,7 +66,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        
+        cell.titleLabel.text = collectionData[indexPath.row]
+        cell.isEditing = isEditing
         if let label = cell.viewWithTag(100) as? UILabel {
             label.text = collectionData[indexPath.row]
         }
