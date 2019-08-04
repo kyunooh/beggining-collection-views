@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var addButton: UIBarButtonItem!
-    
+    @IBOutlet private weak var trashButton: UIBarButtonItem!
     
     var collectionData = ["1¡", "2™", "3£", "4¢", "5∞", "6§", "7¶", "8•", "9ª", "10º"]
     
@@ -28,6 +28,16 @@ class ViewController: UIViewController {
         }, completion: nil)
     }
     
+    @IBAction func deleteItems() {
+        if let selectedItems = collectionView.indexPathsForSelectedItems {
+            let items = selectedItems.map { $0.item }.sorted().reversed()
+            for item in items {
+                collectionData.remove(at: item)
+            }
+            collectionView.deleteItems(at: selectedItems)
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +49,15 @@ class ViewController: UIViewController {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         collectionView.refreshControl = refresh
-        
+        trashButton.isEnabled = false
         navigationItem.leftBarButtonItem = editButtonItem
+        
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         addButton.isEnabled = !editing
+        trashButton.isEnabled = editing
         collectionView.allowsMultipleSelection = editing
         let indexPaths = collectionView.indexPathsForVisibleItems
         for indexPath in indexPaths {
@@ -81,7 +93,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if !isEditing {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
-        } 
+        }
 
     }
     

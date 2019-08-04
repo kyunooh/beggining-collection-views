@@ -79,15 +79,23 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="S2I-wf-IQD">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="0ZU-tA-yQs">
-                            <connections>
-                                <action selector="addItem" destination="BYZ-38-t0r" id="7Ed-le-FDi"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="add" id="0ZU-tA-yQs">
+                                <connections>
+                                    <action selector="addItem" destination="BYZ-38-t0r" id="7Ed-le-FDi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="trash" id="ojk-e9-Ien">
+                                <connections>
+                                    <action selector="deleteItems" destination="BYZ-38-t0r" id="I1M-GL-4Ds"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="0ZU-tA-yQs" id="EeF-5J-2wz"/>
                         <outlet property="collectionView" destination="Xfe-Ab-qPq" id="uQ6-eV-RFM"/>
+                        <outlet property="trashButton" destination="ojk-e9-Ien" id="8Du-pH-p6S"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="Cjg-rf-VsU"/>
                         <segue destination="0RX-lc-LQa" kind="show" identifier="DetailSegue" id="tXH-ts-nGh"/>
                     </connections>
