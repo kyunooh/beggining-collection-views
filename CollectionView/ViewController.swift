@@ -46,6 +46,7 @@ class ViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         addButton.isEnabled = !editing
+        collectionView.allowsMultipleSelection = editing
         let indexPaths = collectionView.indexPathsForVisibleItems
         for indexPath in indexPaths {
             let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
@@ -78,8 +79,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        performSegue(withIdentifier: "DetailSegue", sender: indexPath)
+        if !isEditing {
+            performSegue(withIdentifier: "DetailSegue", sender: indexPath)
+        } 
 
     }
     
