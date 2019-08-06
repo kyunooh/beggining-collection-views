@@ -51,6 +51,7 @@ class ViewController: UIViewController {
         collectionView.refreshControl = refresh
         trashButton.isEnabled = false
         navigationItem.leftBarButtonItem = editButtonItem
+        navigationController?.isToolbarHidden = true
         
     }
 
@@ -64,6 +65,8 @@ class ViewController: UIViewController {
             let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
             cell.isEditing = editing
         }
+        
+        navigationController?.isToolbarHidden = !editing 
     }
     
     @objc func refresh() {
