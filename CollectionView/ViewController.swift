@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             }
             collectionView.deleteItems(at: selectedItems)
         }
-
+        navigationController?.isToolbarHidden = true
     }
     
     override func viewDidLoad() {
@@ -60,13 +60,14 @@ class ViewController: UIViewController {
         addButton.isEnabled = !editing
         trashButton.isEnabled = editing
         collectionView.allowsMultipleSelection = editing
+        collectionView.indexPathsForSelectedItems?.forEach {
+            collectionView.deselectItem(at: $0, animated: false)
+        }
         let indexPaths = collectionView.indexPathsForVisibleItems
         for indexPath in indexPaths {
             let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
             cell.isEditing = editing
         }
-        
-        navigationController?.isToolbarHidden = !editing 
     }
     
     @objc func refresh() {
@@ -92,10 +93,23 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+
+        if isEditing {
+            if let selected = collectionView.indexPathsForSelectedItems, selected.count == 0 {
+                navigationController?.isToolbarHidden = true
+            }
+        }
+
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if !isEditing {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
+        } else {
+            navigationController?.isToolbarHidden = false
         }
 
     }
